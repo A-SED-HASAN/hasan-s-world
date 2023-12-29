@@ -6,7 +6,7 @@ export default function Greeting() {
   return (
     <Wrapper className='fixed-width '>
       <article className='flex-column gap-6'>
-        <h1>welcome to my World my Love Setayesh!</h1>
+        <h1>welcome to my World!</h1>
         <p>
           I'm Hasan, a Front-End Developer who is enthusiastic about creating
           engaging and delightful digital experiences.

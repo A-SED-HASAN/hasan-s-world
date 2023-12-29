@@ -1,3 +1,4 @@
 import RoundedBtn from './RoundedBtn'
+import CircleBtn from './CircleBtn'
 
-export { RoundedBtn }
+export { RoundedBtn, CircleBtn }

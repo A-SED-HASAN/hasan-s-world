@@ -1,4 +1,3 @@
-import Arrow from './Arrow'
 import Bar from './Bar'
 import Blog from './Blog'
 import Cap from './Cap'
@@ -37,8 +36,11 @@ import Key from './Key'
 import Wallet from './Wallet'
 import ErrorTwo from './ErrorTwo'
 
+import Arrow from './Arrow'
+import Bars from './Bars'
 export {
   Arrow,
+  Bars,
   Bar,
   Blog,
   Cap,
