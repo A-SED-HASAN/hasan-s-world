@@ -1,17 +1,7 @@
-import { Button, LinkBtn, RoundedBtn, IconButton } from './Buttons'
+import { RoundedBtn } from './Buttons'
 
 import { Backdrop } from './Backdrop'
 import { FormRow, Alert, Accordion } from './Assistance'
 
-import { Spinner } from './Loaders'
-export {
-  Button,
-  LinkBtn,
-  RoundedBtn,
-  IconButton,
-  Backdrop,
-  FormRow,
-  Alert,
-  Accordion,
-  Spinner,
-}
+import { Spinner, Greeting } from './Loaders'
+export { RoundedBtn, Backdrop, FormRow, Alert, Accordion, Spinner, Greeting }

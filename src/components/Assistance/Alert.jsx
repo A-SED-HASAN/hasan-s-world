@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useGlobalContext } from '../../context'
 import { Close } from '../../assets/icons'
-import { Button, Backdrop } from '../'
+import { Backdrop } from '../'
 
 export default function Alert({
   background,
@@ -54,12 +54,12 @@ export default function Alert({
 
         {confirm && (
           <div className='confirm'>
-            <Button background={background1} hover={hover1} fn={fn1}>
+            <button background={background1} hover={hover1} fn={fn1}>
               {confirmBtn1}
-            </Button>
-            <Button background={background2} hover={hover2} fn={fn2}>
+            </button>
+            <button background={background2} hover={hover2} fn={fn2}>
               {confirmBtn2}
-            </Button>
+            </button>
           </div>
         )}
       </Wrapper>

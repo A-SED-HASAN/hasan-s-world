@@ -2,6 +2,19 @@
 :root {
   --white: #fff;
   --black: #000;
+
+  --primary-50: #d4eefc;
+  --primary-100: #c1e7fa;
+  --primary-200: #9bd8f7;
+  --primary-300: #76c9f4;
+  --primary-400: #50baf1;
+  --primary-500: #2aabee;
+  --primary-600: #118ecf;
+  --primary-700: #0c6b9b;
+  --primary-800: #084767;
+  --primary-900: #042333;
+
+  --max-width: 1080px;
 }
 
 ::selection {
@@ -55,7 +68,7 @@ body {
 
 .fixed-width {
   margin: 0 auto;
-  max-width: var(--maxWidth);
+  max-width: var(--max-width);
   overflow-x: hidden;
 }
 @media screen and (width <= 1270px) {
@@ -106,7 +119,12 @@ body {
 .gap-4 {
   gap: 2rem;
 }
-
+.gap-6 {
+  gap: 3rem;
+}
+.gap-8 {
+  gap: 4rem;
+}
 .full-width {
   width: 100%;
 }
