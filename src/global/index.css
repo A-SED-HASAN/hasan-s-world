@@ -21,6 +21,16 @@
   background: inherit;
   color: inherit;
 }
+&::-webkit-scrollbar {
+  width: 0.3rem;
+}
+&::-webkit-scrollbar-thumb {
+  background-color: var(--primary-900);
+  border-radius: 50rem;
+}
+&::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-800);
+}
 *,
 ::after,
 ::before {
@@ -54,7 +64,6 @@ svg {
 html,
 body {
   margin: auto;
-  max-width: var(--max-width);
   background: var(--black);
 }
 body {

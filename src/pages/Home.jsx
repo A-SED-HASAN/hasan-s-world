@@ -4,48 +4,49 @@ import styled from '@emotion/styled'
 import { CircleBtn, Greeting } from '../components'
 import { Moon, Mute, Sun, UnMute } from '../assets/icons'
 import { useGlobalContext } from '../context'
+import { Sidebar } from '../components/Sidebar'
 
 export default function Home() {
   const { isDarkMode, toggleDarkMode, isMute, toggleMute, toggleSideBar } =
     useGlobalContext()
+  // <Suspense fallback={<Greeting />}>
+  /* Main animation Here */
+  // </Suspense>
   return (
-    <Suspense fallback={<Greeting />}>
-      {/* Main animation Here */}
-      <Wrapper>
-        <nav className='flex-between'>
-          <h1>
-            hasan's
-            <br /> world
-          </h1>
-          <CircleBtn color='var(--white)' icon={'s'} fn={toggleSideBar} />
-        </nav>
-        <footer>
-          <CircleBtn
-            icon={isMute ? <UnMute /> : <Mute />}
-            fn={toggleMute}
-            background='white'
-            color='black'
-            hover='var(--primary-500)'
-            hoverText='white'
-          />
-          <CircleBtn
-            icon={isDarkMode ? <Sun /> : <Moon />}
-            fn={toggleDarkMode}
-            background='white'
-            color='black'
-            hover='var(--primary-500)'
-            hoverText='white'
-          />
-        </footer>
-      </Wrapper>
-    </Suspense>
+    <Wrapper>
+      <nav className='flex-between'>
+        <h1>
+          hasan's
+          <br /> world
+        </h1>
+      </nav>
+      <footer>
+        <CircleBtn
+          icon={isMute ? <UnMute /> : <Mute />}
+          fn={toggleMute}
+          background='white'
+          color='black'
+          hover='var(--primary-500)'
+          hoverText='white'
+        />
+        <CircleBtn
+          icon={isDarkMode ? <Sun /> : <Moon />}
+          fn={toggleDarkMode}
+          background='white'
+          color='black'
+          hover='var(--primary-500)'
+          hoverText='white'
+        />
+      </footer>
+    </Wrapper>
   )
 }
 const Wrapper = styled('section')(() => ({
   position: 'relative',
-  width: '100%',
+  width: '100vw',
   height: '100vh',
   background: 'blue',
+  overflow: 'hidden',
   'nav , footer': {
     padding: '1rem',
     position: 'fixed',
@@ -61,7 +62,7 @@ const Wrapper = styled('section')(() => ({
       fontWeight: '600',
       lineHeight: '100%',
       textTransform: 'uppercase',
-      color: 'var(--white)',
+      color: 'var(--black)',
     },
     svg: {
       width: '40px',

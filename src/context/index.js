@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
     'isSidebarOpen',
     false
   )
-  const toggleSideBar = () => {
+  const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
   }
 
@@ -31,7 +31,7 @@ export const AppProvider = ({ children }) => {
   const ctxValue = {
     isSidebarOpen,
     setIsSidebarOpen,
-    toggleSideBar,
+    toggleSidebar,
     toggleDarkMode,
     isDarkMode,
     isMute,
