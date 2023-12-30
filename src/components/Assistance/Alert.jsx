@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { useGlobalContext } from '../../context'
-import { Close } from '../../assets/icons'
 import { Backdrop } from '../'
 
 export default function Alert({
@@ -48,7 +47,7 @@ export default function Alert({
             <h1>{content}</h1>
           </div>
           <button className='close-btn' onClick={hideModal}>
-            <Close />
+            {/* <Close /> */}
           </button>
         </div>
 

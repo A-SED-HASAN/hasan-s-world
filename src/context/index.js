@@ -14,14 +14,28 @@ export const AppProvider = ({ children }) => {
     'isSidebarOpen',
     false
   )
-  const closeSidebar = () => {
-    setIsSidebarOpen(false)
+  const toggleSideBar = () => {
+    setIsSidebarOpen((prev) => !prev)
+  }
+
+  const [isDarkMode, setIsDarkMode] = useLocalStorage('isDarkMode', false)
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev)
+  }
+
+  const [isMute, setIsMute] = useLocalStorage('isMute', false)
+  const toggleMute = () => {
+    setIsMute((prev) => !prev)
   }
 
   const ctxValue = {
     isSidebarOpen,
     setIsSidebarOpen,
-    closeSidebar,
+    toggleSideBar,
+    toggleDarkMode,
+    isDarkMode,
+    isMute,
+    toggleMute,
   }
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>
 }

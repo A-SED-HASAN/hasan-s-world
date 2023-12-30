@@ -35,7 +35,7 @@ const AccordionItem = ({ item, onToggle, active }) => {
     <AccordionItemWrapper active={active}>
       <div className='flex-between head' onClick={onToggle}>
         {question}
-        <DoubleAngle />
+        <Arrow />
       </div>
 
       <div

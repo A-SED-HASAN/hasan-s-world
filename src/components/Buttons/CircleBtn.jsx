@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { BaseBtn } from '../../global'
 
 export default function CircleBtn({
   icon,
   text,
-  fill = 'var(--white)',
-  color = 'var(--white)',
-  fontSize = '20px',
+  color,
+  fontSize,
   background,
   hover,
   hoverText,
   style,
-  fontWeight = '700',
+  fontWeight,
+  fn,
 }) {
   const styles = {
     background,
@@ -22,42 +23,30 @@ export default function CircleBtn({
     fontWeight,
   }
   return (
-    <Wrapper styles={styles} style={{ fill, ...style }}>
-      <span>{text}</span>
-      {icon}
+    <Wrapper onClick={fn} styles={styles} style={{ ...style }}>
+      {text && <span>{text}</span>}
+      {icon && icon}
     </Wrapper>
   )
 }
 
-const Wrapper = styled('button')(
+const Wrapper = styled(BaseBtn)(
   ({
     styles: { background, hover, hoverText, color, fontSize, fontWeight },
   }) => ({
+    width: '48px',
+    height: '48px',
     color,
-    outline: 'none',
-    fontFamily: 'inherit',
-    border: 'none',
-    borderRadius: '50px',
-    padding: '.4rem .5rem',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '.5rem',
-    lineHeight: '0',
-    cursor: 'pointer',
+    borderRadius: '50%',
     fontSize,
     background,
     fontWeight,
-    transition: 'all .3s',
-    svg: { fill: color, transition: 'all .3s' },
+    svg: { width: '80%', color, fill: 'black' },
 
     ':hover': {
       background: hover,
       color: hoverText,
       svg: { fill: hoverText },
-    },
-    '*': {
-      cursor: 'pointer',
     },
   })
 )

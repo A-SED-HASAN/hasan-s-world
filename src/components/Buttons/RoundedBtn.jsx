@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { BaseBtn } from '../../global'
 
 export default function RoundedBtn({
   icon,
@@ -11,7 +12,6 @@ export default function RoundedBtn({
   hover,
   hoverText,
   style,
-  fontWeight = '700',
 }) {
   const styles = {
     background,
@@ -19,7 +19,6 @@ export default function RoundedBtn({
     hoverText,
     color,
     fontSize,
-    fontWeight,
   }
   return (
     <Wrapper styles={styles} style={{ fill, ...style }}>
@@ -29,35 +28,18 @@ export default function RoundedBtn({
   )
 }
 
-const Wrapper = styled('button')(
-  ({
-    styles: { background, hover, hoverText, color, fontSize, fontWeight },
-  }) => ({
+const Wrapper = styled(BaseBtn)(
+  ({ styles: { background, hover, hoverText, color, fontSize } }) => ({
     color,
-    outline: 'none',
-    fontFamily: 'inherit',
-    border: 'none',
     borderRadius: '50px',
-    padding: '.4rem .5rem',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '.5rem',
-    lineHeight: '0',
-    cursor: 'pointer',
     fontSize,
     background,
-    fontWeight,
-    transition: 'all .3s',
-    svg: { fill: color, transition: 'all .3s' },
+    svg: { fill: color },
 
     ':hover': {
       background: hover,
       color: hoverText,
       svg: { fill: hoverText },
-    },
-    '*': {
-      cursor: 'pointer',
     },
   })
 )
