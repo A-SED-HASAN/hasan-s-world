@@ -14,6 +14,8 @@
   --primary-800: #084767;
   --primary-900: #042333;
 
+  --bg-backdrop: rgba(110, 110, 110, 0.26);
+
   --max-width: 1080px;
 }
 

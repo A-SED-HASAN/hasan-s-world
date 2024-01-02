@@ -21,3 +21,16 @@ export const useLocalStorage = (key, defaultValue) => {
 
   return [value, setValue]
 }
+
+export const useSound = (src, { playbackRate, volume }) => {
+  const audio = new Audio(src)
+
+  const playFunc = () => {
+    volume > 1 ? (audio.volume = 1) : (audio.volume = volume)
+    audio.playbackRate = playbackRate
+
+    audio.play()
+  }
+
+  return [playFunc, audio.src, audio.duration]
+}

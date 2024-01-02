@@ -10,10 +10,7 @@ import { useLocalStorage } from '../hook'
 export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useLocalStorage(
-    'isSidebarOpen',
-    false
-  )
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
   }
@@ -21,6 +18,7 @@ export const AppProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useLocalStorage('isDarkMode', false)
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev)
+    //here
   }
 
   const [isMute, setIsMute] = useLocalStorage('isMute', false)

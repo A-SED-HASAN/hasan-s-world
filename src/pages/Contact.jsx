@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { BreadCrumb } from '../components'
+import { socialLinks } from '../assets/constants'
+import { Link } from 'react-router-dom'
 export default function Contact() {
   return (
     <Wrapper className='fixed-width'>
@@ -14,7 +16,15 @@ export default function Contact() {
       <h1>
         If you would like to see more of my work, feel free to follow me on
       </h1>
-      <h2>Links :</h2>
+      <div>
+        <h2>Links :</h2>
+        <div className='flex-between links'>
+          {socialLinks.map((item) => {
+            const { id, text, icon, to } = item
+            return <LinkBtn to={to} key={id} text={text} icon={icon} />
+          })}
+        </div>
+      </div>
     </Wrapper>
   )
 }
@@ -32,7 +42,9 @@ const Wrapper = styled('div')(() => ({
     fontWeight: 400,
     lineHeight: '120%',
   },
-
+  '.links': {
+    maxWidth: '300px',
+  },
   '@media (width<= 600px)': {
     gap: '1.5rem',
 
@@ -47,5 +59,34 @@ const Wrapper = styled('div')(() => ({
     p: {
       fontSize: '18px',
     },
+  },
+}))
+
+const LinkBtn = ({ to, text, icon }) => {
+  return (
+    <LinkWrapper to={to}>
+      {icon}
+      {text}
+    </LinkWrapper>
+  )
+}
+const LinkWrapper = styled(Link)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: 'var(--white)',
+  gap: '.5rem',
+  marginTop: '1rem',
+  transition: '.3s all',
+  svg: {
+    transition: '.3s all',
+    fill: 'var(--white)',
+    width: '25px',
+  },
+
+  ':hover': {
+    color: 'var(--primary-500)',
+    svg: { fill: 'var(--primary-500)' },
   },
 }))

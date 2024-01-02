@@ -5,17 +5,18 @@ import { NavLink } from 'react-router-dom'
 import { useGlobalContext } from '../../context'
 import { links } from '../../assets/constants'
 export default function Menu() {
-  const { isSidebarOpen } = useGlobalContext()
+  const { isSidebarOpen, toggleSidebar } = useGlobalContext()
   return (
     <Wrapper
       style={{
-        transform: isSidebarOpen ? ' translate(100%, 0)' : 'translate(0%, 0)',
+        transform: isSidebarOpen ? 'translate(0%, 0)' : ' translate(100%, 0)',
       }}
     >
       {links.map((item) => {
         const { id, to, text } = item
         return (
           <NavLink
+            onClick={toggleSidebar}
             key={id}
             to={to}
             className={({ isActive }) => (isActive ? 'active' : '')}
@@ -39,7 +40,7 @@ const Wrapper = styled.ul`
   background: var(--black);
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
-
+  z-index: 887;
   transform-origin: 0% 0%;
 
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);

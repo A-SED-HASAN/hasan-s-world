@@ -6,13 +6,13 @@ import { Suspense } from 'react'
 
 import { Moon } from '../models'
 import { Spinner } from '../components'
+import { Link } from 'react-router-dom'
 
 export default function ErrorPage() {
-  // console.log(drag)
   const [currentStage, setCurrentStage] = useState(1)
   const [isRotating, setIsRotating] = useState(false)
 
-  const adjustIslandForScreenSize = () => {
+  const adjustMoonForScreenSize = () => {
     let screenScale, screenPosition
 
     if (window.innerWidth < 768) {
@@ -26,12 +26,11 @@ export default function ErrorPage() {
     return [screenScale, screenPosition]
   }
 
-  const [islandScale, islandPosition] = adjustIslandForScreenSize()
+  const [moonScale, moonPosition] = adjustMoonForScreenSize()
 
   return (
-    <Wrapper>
+    <Wrapper style={{ cursor: isRotating ? 'grabbing' : 'grab' }}>
       <Info currentStage={currentStage} />
-      <div className='ali'></div>
       <Suspense fallback={<Spinner />}>
         <Canvas
           camera={{
@@ -55,9 +54,9 @@ export default function ErrorPage() {
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
-            position={islandPosition}
+            position={moonPosition}
             rotation={[0.1, 4.7077, 0]}
-            scale={islandScale}
+            scale={moonScale}
           />
         </Canvas>
       </Suspense>
@@ -76,11 +75,8 @@ const Wrapper = styled('section')(() => ({
     top: '20%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
-  },
-  '.ali': {
-    width: '200px',
-    height: '200px',
-    backgroundImage: "url('../assets/images/drag_animation.svg')",
+    background: 'red',
+    zIndex: '999',
   },
 }))
 
@@ -93,6 +89,10 @@ function Info({ currentStage }) {
   }
 
   if (currentStage === 4) {
-    return <h1>finally HOME !</h1>
+    return (
+      <h1>
+        finally <Link to='/'>Home</Link> !
+      </h1>
+    )
   }
 }

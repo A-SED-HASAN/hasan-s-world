@@ -12,7 +12,7 @@ export default function Moon({
   currentFocusPoint,
   ...props
 }) {
-  const islandRef = useRef()
+  const moonRef = useRef()
   // Get access to the Three.js renderer and viewport
   const { gl, viewport } = useThree()
   const { nodes, materials } = useGLTF(moon)
@@ -22,7 +22,7 @@ export default function Moon({
   // Use a ref for rotation speed
   const rotationSpeed = useRef(0)
   // Define a damping factor to control rotation damping
-  const dampingFactor = 0.95
+  const dampingFactor = 0.97
 
   // Handle pointer (mouse or touch) down event
   const handlePointerDown = (event) => {
@@ -57,7 +57,7 @@ export default function Moon({
       const delta = (clientX - lastX.current) / viewport.width
 
       // Update the island's rotation based on the mouse/touch movement
-      islandRef.current.rotation.y += delta * 0.01 * Math.PI
+      moonRef.current.rotation.y += delta * 0.01 * Math.PI
 
       // Update the reference for the last clientX position
       lastX.current = clientX
@@ -72,22 +72,22 @@ export default function Moon({
     if (event.key === 'ArrowLeft') {
       if (!isRotating) setIsRotating(true)
 
-      islandRef.current.rotation.y += 0.005 * Math.PI
+      moonRef.current.rotation.y += 0.005 * Math.PI
       rotationSpeed.current = 0.007
     } else if (event.key === 'ArrowRight') {
       if (!isRotating) setIsRotating(true)
 
-      islandRef.current.rotation.y -= 0.005 * Math.PI
+      moonRef.current.rotation.y -= 0.005 * Math.PI
       rotationSpeed.current = -0.007
     } else if (event.key === 'ArrowUp') {
       if (!isRotating) setIsRotating(true)
 
-      islandRef.current.rotation.z -= 0.005 * Math.PI
+      moonRef.current.rotation.z -= 0.005 * Math.PI
       rotationSpeed.current = 0.007
     } else if (event.key === 'ArrowDown') {
       if (!isRotating) setIsRotating(true)
 
-      islandRef.current.rotation.z += 0.005 * Math.PI
+      moonRef.current.rotation.z += 0.005 * Math.PI
       rotationSpeed.current = -0.007
     }
   }
@@ -130,10 +130,10 @@ export default function Moon({
         rotationSpeed.current = 0
       }
 
-      islandRef.current.rotation.y += rotationSpeed.current
+      moonRef.current.rotation.y += rotationSpeed.current
     } else {
       // When rotating, determine the current stage based on island's orientation
-      const rotation = islandRef.current.rotation.y
+      const rotation = moonRef.current.rotation.y
 
       /**
        * Normalize the rotation value to ensure it stays within the range [0, 2 * Math.PI].
@@ -174,8 +174,14 @@ export default function Moon({
     }
   })
 
+  useFrame(({ clock }) => {
+    // moonRef.current.rotation.y = clock.getElapsedTime() / 5
+    moonRef.current.rotation.x = clock.getElapsedTime() / 10
+  })
+
+  //   useFrame((state, delta) => (meshRef.current.rotation.x += delta))
   return (
-    <a.group ref={islandRef} {...props} dispose={null}>
+    <a.group ref={moonRef} {...props} dispose={null}>
       <group scale={0.01}>
         <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
           <mesh
