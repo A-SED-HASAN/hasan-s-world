@@ -5,7 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 
 import { tree } from '../assets/3D'
 
-export default function Tree({ position, scale }) {
+export default function MainTree({ position, scale }) {
   const treeRef = useRef()
   // Get access to the Three.js renderer and viewport
   const { gl, viewport } = useThree()

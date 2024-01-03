@@ -7,10 +7,10 @@ import { Suspense } from 'react'
 import { Moon } from '../models'
 import { Spinner } from '../components'
 import { Link } from 'react-router-dom'
+import { OrbitControls } from '@react-three/drei'
 
 export default function ErrorPage() {
   const [currentStage, setCurrentStage] = useState(1)
-  const [isRotating, setIsRotating] = useState(false)
 
   const adjustMoonForScreenSize = () => {
     let screenScale, screenPosition
@@ -29,7 +29,7 @@ export default function ErrorPage() {
   const [moonScale, moonPosition] = adjustMoonForScreenSize()
 
   return (
-    <Wrapper style={{ cursor: isRotating ? 'grabbing' : 'grab' }}>
+    <Wrapper>
       <Info currentStage={currentStage} />
       <Suspense fallback={<Spinner />}>
         <Canvas
@@ -40,6 +40,13 @@ export default function ErrorPage() {
             far: 1000,
           }}
         >
+          <OrbitControls
+            minAzimuthAngle={-Math.PI / 6.5}
+            maxAzimuthAngle={Math.PI / 6.5}
+            minPolarAngle={Math.PI / 2.7}
+            maxPolarAngle={Math.PI - Math.PI / 2.7}
+          />
+
           <directionalLight position={[0, 0, 1]} intensity={2.5} />
           <ambientLight intensity={1} />
           <pointLight position={[5, 10, 0]} intensity={2} />
@@ -51,8 +58,6 @@ export default function ErrorPage() {
           />
 
           <Moon
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
             position={moonPosition}
             rotation={[0.1, 4.7077, 0]}
@@ -70,25 +75,33 @@ const Wrapper = styled('section')(() => ({
   placeItems: 'center',
   height: '100vh',
   width: '100vw',
+  cursor: 'grab',
   h1: {
     position: 'fixed',
     top: '20%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
-    background: 'red',
     zIndex: '999',
+  },
+  a: {
+    color: 'var(--white)',
+    borderBottom: '1px solid transparent',
+    transition: '.3s all',
+    ':hover': {
+      borderBottom: '1px solid var(--white)',
+    },
   },
 }))
 
 function Info({ currentStage }) {
-  if (currentStage === 2) {
+  if (currentStage === 1) {
     return <h1> are You Lost ?</h1>
   }
-  if (currentStage === 3) {
+  if (currentStage === 2) {
     return <h1>wanna back home ?</h1>
   }
 
-  if (currentStage === 4) {
+  if (currentStage === 3) {
     return (
       <h1>
         finally <Link to='/'>Home</Link> !

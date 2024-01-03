@@ -6,6 +6,12 @@ import laserBot from './laserBot.glb'
 import foodTruck from './foodTruck.glb'
 import drifter from './drifter.glb'
 import university from './university.glb'
+import woodenChair from './woodenChair.glb'
+import peachTree from './peachTree.glb'
+import store from './store.glb'
+import trunk from './trunk.glb'
+import clouds from './clouds.glb'
+import sky from './sky.glb'
 
 export {
   moon,
@@ -16,4 +22,10 @@ export {
   foodTruck,
   drifter,
   university,
+  woodenChair,
+  peachTree,
+  store,
+  trunk,
+  clouds,
+  sky,
 }

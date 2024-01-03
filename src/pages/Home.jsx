@@ -6,15 +6,22 @@ import { Moon, Mute, Sun, UnMute } from '../assets/icons'
 import { useGlobalContext } from '../context'
 
 import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+
 import {
+  Chair,
   Drifter,
   FoodTruck,
   LaserBot,
-  Tree,
+  MainTree,
+  Store,
+  Trunk,
   University,
   WavePerson,
+  Cloud,
 } from '../models'
 import { Robot } from '../models'
+import PeachTree from '../models/PeachTree'
 
 export default function Home() {
   const { isDarkMode, toggleDarkMode, isMute, toggleMute } = useGlobalContext()
@@ -32,12 +39,13 @@ export default function Home() {
         <Suspense fallback={<Spinner />}>
           <Canvas
             camera={{
-              position: [0, 100, 150],
+              position: [30, 100, 150],
               fov: 75,
               near: 0.1,
-              far: 1000,
+              far: 800,
             }}
           >
+            <OrbitControls autoRotate />
             <directionalLight position={[0, 0, 1]} intensity={2.5} />
             <ambientLight intensity={1} />
             <pointLight position={[5, 10, 0]} intensity={2} />
@@ -48,10 +56,10 @@ export default function Home() {
               intensity={2}
             />
 
-            <Tree position={[-45, -20, 0]} scale={[0.1, 0.1, 0.1]} />
+            <MainTree position={[-45, -20, 0]} scale={[0.1, 0.1, 0.1]} />
             <Robot position={[60, 0, 0]} scale={[10, 10, 10]} />
             <WavePerson
-              position={[-50, 0, 0]}
+              // position={[-50, 0, 0]}
               scale={[20, 20, 20]}
               rotation={[0, 0, 0]}
             />
@@ -74,6 +82,32 @@ export default function Home() {
               position={[100, 0, 0]}
               scale={[1, 1, 1]}
               rotation={[0, 10.9, 0.5]}
+            />
+            <Chair
+              position={[100, -80, 0]}
+              scale={[200, 200, 200]}
+              rotation={[0, 9, 0]}
+            />
+            <PeachTree
+              position={[50, -120, 0]}
+              scale={[10, 10, 10]}
+              rotation={[-0.5, 0, 0]}
+            />
+            <Store
+              position={[-50, -140, 0]}
+              scale={[10, 10, 10]}
+              rotation={[-0.5, 0, 0]}
+            />
+            <Trunk
+              position={[0, -140, 0]}
+              scale={[20, 20, 20]}
+              rotation={[-0.5, 0, 0]}
+            />
+            <Cloud
+              numberOfCloud='15'
+              position={[0, -140, 0]}
+              scale={[20, 20, 20]}
+              rotation={[-0.5, 0, 0]}
             />
           </Canvas>
         </Suspense>
@@ -106,6 +140,7 @@ const Wrapper = styled('section')(() => ({
   height: '100vh',
   background: 'white',
   overflow: 'hidden',
+  backgroundColor: 'black',
   'nav , footer': {
     padding: '1rem',
     position: 'fixed',
@@ -115,7 +150,6 @@ const Wrapper = styled('section')(() => ({
   },
   nav: {
     top: '0',
-
     h1: {
       fontSize: '1rem',
       fontWeight: '600',
@@ -136,5 +170,15 @@ const Wrapper = styled('section')(() => ({
     svg: {
       width: '24px',
     },
+  },
+
+  canvas: {
+    background: `linear-gradient(
+      0deg,
+      hsl(200, 50%, 100%) 50%,
+      hsl(214, 80%, 70%) 100%
+    )`,
+    cursor: 'move',
+    cursor: 'grab',
   },
 }))
