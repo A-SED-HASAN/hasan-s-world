@@ -1,32 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense, useEffect } from 'react'
 import styled from '@emotion/styled'
-
+import { Link } from 'react-router-dom'
 import { Canvas } from '@react-three/fiber'
-import { Suspense } from 'react'
+import { OrbitControls } from '@react-three/drei'
 
 import { Moon } from '../models'
 import { Spinner } from '../components'
-import { Link } from 'react-router-dom'
-import { OrbitControls } from '@react-three/drei'
 
 export default function ErrorPage() {
   const [currentStage, setCurrentStage] = useState(1)
+  const [moonScale, setMoonScale] = useState(1)
 
-  const adjustMoonForScreenSize = () => {
-    let screenScale, screenPosition
-
-    if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9]
-      screenPosition = [0, -6.5, -43.4]
+  useEffect(() => {
+    if (window.innerWidth < 550) {
+      setMoonScale([0.75, 0.75, 0.75])
+    } else if (window.innerWidth < 750) {
+      setMoonScale([0.85, 0.85, 0.85])
     } else {
-      screenScale = [1, 1, 1]
-      screenPosition = [0, -6.5, -43.4]
+      setMoonScale([1, 1, 1])
     }
-
-    return [screenScale, screenPosition]
-  }
-
-  const [moonScale, moonPosition] = adjustMoonForScreenSize()
+  }, [])
 
   return (
     <Wrapper>
@@ -59,7 +52,7 @@ export default function ErrorPage() {
 
           <Moon
             setCurrentStage={setCurrentStage}
-            position={moonPosition}
+            position={[0, -6.5, -43.4]}
             rotation={[0.1, 4.7077, 0]}
             scale={moonScale}
           />
@@ -82,6 +75,8 @@ const Wrapper = styled('section')(() => ({
     left: '50%',
     transform: 'translate(-50%,-50%)',
     zIndex: '999',
+    width: '100%',
+    textAlign: 'center',
   },
   a: {
     color: 'var(--white)',
@@ -94,18 +89,13 @@ const Wrapper = styled('section')(() => ({
 }))
 
 function Info({ currentStage }) {
-  if (currentStage === 1) {
-    return <h1> are You Lost ?</h1>
-  }
-  if (currentStage === 2) {
-    return <h1>wanna back home ?</h1>
-  }
+  const content = [
+    <h1> are You Lost ?</h1>,
+    <h1>wanna back home ?</h1>,
+    <h1>
+      finally <Link to='/'>Home</Link> !
+    </h1>,
+  ]
 
-  if (currentStage === 3) {
-    return (
-      <h1>
-        finally <Link to='/'>Home</Link> !
-      </h1>
-    )
-  }
+  return content[currentStage]
 }

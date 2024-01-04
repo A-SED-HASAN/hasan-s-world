@@ -11,11 +11,11 @@ export default function Moon({ setCurrentStage, ...props }) {
   useFrame(({ clock }) => {
     moonRef.current.rotation.y = clock.getElapsedTime() / 5
     if (clock.elapsedTime < 2.5) {
-      setCurrentStage(1)
+      setCurrentStage(0)
     } else if (clock.elapsedTime < 5.5) {
-      setCurrentStage(2)
+      setCurrentStage(1)
     } else {
-      setCurrentStage(3)
+      setCurrentStage(2)
     }
   })
   return (

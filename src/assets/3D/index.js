@@ -12,6 +12,7 @@ import store from './store.glb'
 import trunk from './trunk.glb'
 import clouds from './clouds.glb'
 import sky from './sky.glb'
+import island from './island.glb'
 
 export {
   moon,
@@ -28,4 +29,5 @@ export {
   trunk,
   clouds,
   sky,
+  island,
 }

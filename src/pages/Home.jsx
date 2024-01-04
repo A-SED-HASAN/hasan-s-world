@@ -6,7 +6,7 @@ import { Moon, Mute, Sun, UnMute } from '../assets/icons'
 import { useGlobalContext } from '../context'
 
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Stats } from '@react-three/drei'
 
 import {
   Chair,
@@ -19,9 +19,10 @@ import {
   University,
   WavePerson,
   Cloud,
+  Island,
+  Robot,
+  PeachTree,
 } from '../models'
-import { Robot } from '../models'
-import PeachTree from '../models/PeachTree'
 
 export default function Home() {
   const { isDarkMode, toggleDarkMode, isMute, toggleMute } = useGlobalContext()
@@ -39,30 +40,27 @@ export default function Home() {
         <Suspense fallback={<Spinner />}>
           <Canvas
             camera={{
-              position: [30, 100, 150],
-              fov: 75,
+              position: [6, 1, 300],
+              fov: 45,
               near: 0.1,
-              far: 800,
+              far: 10000,
             }}
           >
-            <OrbitControls autoRotate />
-            <directionalLight position={[0, 0, 1]} intensity={2.5} />
-            <ambientLight intensity={1} />
-            <pointLight position={[5, 10, 0]} intensity={2} />
-            <spotLight
-              position={[10, 10, 10]}
-              angle={0.15}
-              penumbra={1}
+            <OrbitControls />
+            <Stats />
+            <ambientLight intensity={2} position={[0, 0, 0]} color='white' />
+            <directionalLight
+              position={[100, 100, 100]}
               intensity={2}
+              color='white'
             />
-
-            <MainTree position={[-45, -20, 0]} scale={[0.1, 0.1, 0.1]} />
-            <Robot position={[60, 0, 0]} scale={[10, 10, 10]} />
             <WavePerson
-              // position={[-50, 0, 0]}
-              scale={[20, 20, 20]}
+              position={[-50, 0, 0]}
+              scale={[50, 50, 50]}
               rotation={[0, 0, 0]}
             />
+            <MainTree position={[-45, -20, 0]} scale={[0.1, 0.1, 0.1]} />
+            <Robot position={[60, 0, 0]} scale={[10, 10, 10]} />
             <LaserBot
               position={[10, 40, 0]}
               scale={[10, 10, 10]}
@@ -109,6 +107,11 @@ export default function Home() {
               scale={[20, 20, 20]}
               rotation={[-0.5, 0, 0]}
             />
+            {/* <Island
+              position={[-100, 80, 0]}
+              scale={[0.1, 0.1, 0.1]}
+              rotation={[20, 1, 0]}
+            /> */}
           </Canvas>
         </Suspense>
 

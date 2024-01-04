@@ -12,6 +12,7 @@ import Store from './Store'
 import Trunk from './Trunk'
 import Cloud from './Cloud'
 import Sky from './Sky'
+import Island from './Island'
 
 export {
   Moon,
@@ -28,4 +29,5 @@ export {
   Trunk,
   Cloud,
   Sky,
+  Island,
 }
